@@ -1,14 +1,16 @@
-async function loadPhones() {
+async function loadPhones(search = "iphone") {
   const res = await fetch(
-    "https://openapi.programming-hero.com/api/phones?search=iphone"
+    `https://openapi.programming-hero.com/api/phones?search=${search}`
   );
   const data = await res.json();
   const phones = data.data;
   getAllPhones(phones);
 }
+loadPhones();
 
 async function getAllPhones(phones) {
   const phonesContener = document.getElementById("phones-contener");
+  phonesContener.textContent = "";
   phones.forEach((phone) => {
     console.log(phone);
     const phoneCard = document.createElement("div");
@@ -26,4 +28,9 @@ async function getAllPhones(phones) {
     phonesContener.appendChild(phoneCard);
   });
 }
-loadPhones();
+
+const handleSearch = () => {
+  const searchField = document.getElementById("search-field");
+  const searchText = searchField.value;
+  loadPhones(searchText);
+};
