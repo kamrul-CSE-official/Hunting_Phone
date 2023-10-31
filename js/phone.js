@@ -29,6 +29,7 @@ async function getAllPhones(phones) {
   });
 }
 
+// handle search button
 const handleSearch = () => {
   const searchField = document.getElementById("search-field");
   const searchText = searchField.value;
